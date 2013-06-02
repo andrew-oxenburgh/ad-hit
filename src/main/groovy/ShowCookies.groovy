@@ -1,3 +1,4 @@
+import com.gargoylesoftware.htmlunit.Page
 @Grab(group = 'net.sourceforge.htmlunit', module = 'htmlunit', version = '2.12')
 
 import com.gargoylesoftware.htmlunit.WebClient
@@ -14,9 +15,16 @@ def site = "file:///C:/Users/andrew/IdeaProjects/ad-hit/slot.html"
 client.options.javaScriptEnabled = true
 client.options.throwExceptionOnFailingStatusCode = false
 client.options.throwExceptionOnScriptError = false
-client.getPage(site);
+Page page = client.getPage(site);
 
 showCookies("http://ih.adscale.de")
+
+page.properties.each{
+    println it
+}
+
+
+println "hello"
 
 Set<Cookie> showCookies(String site) {
     println "showing cookies for $site"
